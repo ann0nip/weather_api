@@ -1,11 +1,7 @@
 const express = require("express")
-
 const router = express.Router()
+const LocationController = require("./controllers/location.controller")
 
-router.get("/", (req, res) => {
-  res.json({
-    message: "test ok"
-  })
-})
+router.get("/location", LocationController.getLocationByIp)
 
 module.exports = router

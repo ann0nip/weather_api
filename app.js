@@ -7,13 +7,15 @@ const logger = require('morgan');
 const app = express();
 
 const location = require("./api/location")
+const weather = require("./api/weather")
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use("/api/v1/location", location)
+app.use("/api/v1", location)
+app.use("/api/v1", weather)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
