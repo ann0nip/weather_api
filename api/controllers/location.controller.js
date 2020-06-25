@@ -3,9 +3,11 @@ const LocationService = require("../services/location.service");
 const getLocationByIp = async (req, res) => {
   try {
     const response = await LocationService.getLocationByIp(req)
-    const { regionName: city } = { ...response.data }
+    const { city } = { ...response.data }
 
-    res.json({ city });
+    const cityNameNormalized = city.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    res.json({ city: cityNameNormalized });
   } catch (err) {
     res.status(500).send(err);
   }

@@ -4,8 +4,20 @@ require("dotenv").config();
 const IP_API_URL = process.env.IP_API;
 
 const getLocationByIp = async (req) => {
+  /* Using the App in localhost request-ip return '::1'
+  so by default the location will by Buenos Aires */
+
   try {
     const clientIp = requestIp.getClientIp(req)
+
+    if (clientIp === '::1') {
+      return {
+        data: {
+          city: 'Buenos Aires'
+        }
+      }
+    }
+
     return await axios.get(
       `${IP_API_URL}/${clientIp}`
     );

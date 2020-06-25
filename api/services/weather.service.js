@@ -8,7 +8,7 @@ const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const getCityByIp = async (req) => {
   const response = await LocationService.getLocationByIp(req)
 
-  return response.data.regionName
+  return response.data.city
 }
 
 const getWeather = async (city) => {
