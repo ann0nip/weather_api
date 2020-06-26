@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test": "mocha './test.js'"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -18,6 +19,9 @@
     "request-ip": "^2.1.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "mocha": "^8.0.1",
+    "nodemon": "^2.0.4",
+    "should": "^13.2.3",
+    "supertest": "^4.0.2"
   }
 }

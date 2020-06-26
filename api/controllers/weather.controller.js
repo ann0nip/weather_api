@@ -6,7 +6,7 @@ const getWeatherByCity = async (req, res) => {
     const { name: city, weather, main: more } = { ...response.data }
     res.json({ city, weather, more });
   } catch (err) {
-    res.status(500).send(err);
+    res.status(503).send(err);
   }
 }
 
