@@ -67,5 +67,65 @@ describe("Test Endpoints", () => {
           done();
         });
     })
+
+    it("Should return 503", (done) => {
+      request(app)
+        .get('/api/v1/current/sarasaxasda', { timeout: 5000 })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(503)
+        .end((err, res) => {
+          should.exist(res);
+          should(res.body).have.property.message
+          should(res.body.message).be.equal("City not found")
+          done();
+        });
+    })
+  })
+
+  describe("Check /forecast & /forecast/:city", () => {
+    it("Should return city & list props", (done) => {
+      request(app)
+        .get('/api/v1/forecast', { timeout: 5000 })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          should.not.exist(err);
+          should.exist(res);
+          should(res.body).have.property.city
+          should(res.body).have.property.list
+          done();
+        });
+    })
+
+    it("Should return city & list props", (done) => {
+      request(app)
+        .get('/api/v1/forecast/cordoba', { timeout: 5000 })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          should.not.exist(err);
+          should.exist(res);
+          should(res.body).have.property.city
+          should(res.body).have.property.list
+          done();
+        });
+    })
+
+    it("Should return 503", (done) => {
+      request(app)
+        .get('/api/v1/forecast/sarasaxasda', { timeout: 5000 })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(503)
+        .end((err, res) => {
+          should.exist(res);
+          should(res.body).have.property.message
+          should(res.body.message).be.equal("City not found")
+          done();
+        });
+    })
   })
 })
