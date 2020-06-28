@@ -2,13 +2,14 @@ const createError = require("http-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-
+const cors = require("cors");
 const app = express();
 
 const index = require("./api/routers/index");
 const location = require("./api/routers/location");
 const weather = require("./api/routers/weather");
 
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
