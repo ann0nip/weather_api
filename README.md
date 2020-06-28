@@ -33,3 +33,17 @@ npm run test
 ```sh
 npm run coverage
 ```
+
+## End Points
+
+`/location`
+
+Devuelve los datos de ubicación city según ip-api.
+
+`/current[/city]`
+
+City es un parámetro opcional. Devuelve los datos de ubicación city o la ubicación actual según ip-api y el estado del tiempo actual.
+
+`/forecast[/city]`
+
+City es un parámetro opcional. Devuelve los datos de ubicación city o la ubicación actual según ip-api y el estado del tiempo a 5 días
