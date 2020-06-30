@@ -6,7 +6,7 @@ const getWeatherByCity = async (req, res) => {
     const { name: city, weather, main: more } = { ...response.data };
     res.json({ city, weather, more });
   } catch (err) {
-    res.status(503).json({ message: "City not found" });
+    res.status(503).json({ status: 503, message: "City not found" });
   }
 };
 
@@ -16,7 +16,7 @@ const getForecastByCity = async (req, res) => {
     const { city, list } = { ...response.data };
     res.json({ city, list });
   } catch (err) {
-    res.status(503).json({ message: "City not found" });
+    res.status(503).json({ status: 503, message: "City not found" });
   }
 };
 
